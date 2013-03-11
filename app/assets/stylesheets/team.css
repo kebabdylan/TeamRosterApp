@@ -1,0 +1,12 @@
+
+ table{
+	margin:5px 0px 10px 0px; padding:0px;
+	border-spacing:0px; border:thin solid #ccc; border-radius: 4px;
+}
+tr{}
+tr.dark{background-color: #f2f2f2}
+th, #content td{padding:4px;}
+th{background-color:#000066;text-align: left; color:#f2f2f2;}
+td{padding:6px;}
+
+label{}

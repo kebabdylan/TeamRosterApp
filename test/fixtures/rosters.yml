@@ -1,11 +1,16 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
 
 one:
-  team: 
-  member: 
-  role: 
+  team: teamgo
+  member: one
+  role: one
 
 two:
-  team: 
-  member: 
-  role: 
+  team: teamgo
+  member: two
+  role: two
+
+three:
+  team: teamstop
+  member: one
+  role: two

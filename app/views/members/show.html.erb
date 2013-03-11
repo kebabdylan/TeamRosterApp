@@ -1,14 +1,8 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <b>First name:</b>
-  <%= @member.first_name %>
-</p>
-
-<p>
-  <b>Last name:</b>
-  <%= @member.last_name %>
-</p>
+<h2>
+  <%= @member.full_name %>
+</h2>
 
 <p>
   <b>Email:</b>
@@ -24,6 +18,9 @@
   <b>Password:</b>
   <%= @member.password %>
 </p>
+
+<h3>Teams</h3>
+<%= debug @member.teams %>
 
 
 <%= link_to 'Edit', edit_member_path(@member) %> |

@@ -1,0 +1,20 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Team:</b>
+  <%= @roster.team.name %>
+</p>
+
+<p>
+  <b>Member:</b>
+  <%= @roster.member.full_name %>
+</p>
+
+<p>
+  <b>Role:</b>
+  <%= @roster.role.name %>
+</p>
+
+
+<%= link_to 'Edit', edit_roster_path(@roster) %> |
+<%= link_to 'Back', rosters_path %>

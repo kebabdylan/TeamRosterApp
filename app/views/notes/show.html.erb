@@ -1,0 +1,20 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Content:</b>
+  <%= @note.content %>
+</p>
+
+<p>
+  <b>Is private:</b>
+  <%= @note.is_private %>
+</p>
+
+<p>
+  <b>Project:</b>
+  <%= @note.project %>
+</p>
+
+
+<%= link_to 'Edit', edit_note_path(@note) %> |
+<%= link_to 'Back', notes_path %>

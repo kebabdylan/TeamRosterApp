@@ -1,4 +1,16 @@
 TeamRosterApp::Application.routes.draw do
+  resources :notes
+
+  resources :projects
+
+  resources :rosters
+
+  resources :members
+
+  resources :teams
+
+  resources :roles
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

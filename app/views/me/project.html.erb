@@ -1,0 +1,51 @@
+
+
+<h2>Project: <%= @project.title %></h2>
+
+<div class="item-details">
+<p><%= @project.description %></p>
+<p>Team: <%= link_to @project.team.name, "/me/team/#{@project.team.id}" %></p>
+</div>
+
+<h3>Comments</h3>
+<div class="note-list">
+	<% unless @project.notes.empty? %>
+		<% @project.notes.each do |note| %>
+		<p class="note">
+			"<i><%= note.content %></i>"
+			<br/>
+			Submitted on <%= note.created_at %>
+		</p>
+		<% end %>
+
+	<% else %>
+
+		<p>There are no notes yet</p>
+
+	<% end %>
+</div>
+
+<div class="embedded-form">
+	
+
+	<%= form_for(@note, :url => "/me/project/add_note") do |f| %>
+
+		<H3>Add a Note</h3>
+		
+		<div class="field">
+			<%= f.label :content %>
+			<%= f.text_area :content, {:rows=>5, :cols=>60} %>
+		</div>
+		
+		<div class="field">
+		    <%= f.label :is_private %><br />
+		    <%= f.check_box :is_private %>
+	    </div>
+		
+		<%= hidden_field :note, :project_id, :value=>@project.id %>
+
+		<div class="actions">
+			<%= f.submit %>
+		</div>	
+	<% end %>
+</div>

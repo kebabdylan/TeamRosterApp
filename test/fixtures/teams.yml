@@ -9,3 +9,8 @@ teamstop:
   name: Stop Team
   logo: MyString
   mascot: MyString
+
+teamother:
+  name: Other Team
+  logo: MyString
+  mascot: MyString

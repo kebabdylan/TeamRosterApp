@@ -26,6 +26,16 @@
 
 <% end %>
 
-
-<%= link_to 'Edit', edit_member_path(@member) %> |
-<%= link_to 'Back', members_path %>
+<h3>Projects</h3>
+<% unless @member.projects.empty? %>
+	<ul class="light-block">
+		<% @member.projects.each do |project| %>
+			<li>
+				<%= project.title %><br/>
+				<%= link_to "View Details", "/me/project/#{project.id}" %>
+			</li>
+		<% end %>
+	</ul>
+<% else %>
+<p>There are no current projects</p>
+<% end %>

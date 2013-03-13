@@ -1,0 +1,25 @@
+
+
+<h2>Team: <%= @team.name %></h2>
+
+<div class="item-details">
+
+
+</div>
+
+<h3>Projects</h3>
+<div class="project-list">
+	<% unless @team.projects.empty? %>
+		<% @team.projects.each do |project| %>
+		<p class="project">
+			<%= project.title %><br/>
+			<i><%= project.description %></i>
+		</p>
+		<% end %>
+
+	<% else %>
+
+		<p>There are no projects for this team</p>
+
+	<% end %>
+</div>

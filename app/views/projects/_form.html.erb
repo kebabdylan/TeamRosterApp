@@ -12,24 +12,24 @@
   <% end %>
 
   <div class="field">
-    <%= f.label :title %><br />
+    <%= f.label :title %>
     <%= f.text_field :title %>
   </div>
   <div class="field">
-    <%= f.label :description %><br />
+    <%= f.label :description %>
     <%= f.text_area :description %>
   </div>
   <div class="field">
-    <%= f.label :website %><br />
+    <%= f.label :website %>
     <%= f.text_field :website %>
   </div>
   <div class="field">
-    <%= f.label :svn %><br />
+    <%= f.label :svn %>
     <%= f.text_field :svn %>
   </div>
   <div class="field">
-    <%= f.label :team %><br />
-    <%= f.text_field :team %>
+    <%= f.label :team %>
+    <%= f.collection_select :team_id, Team.all, :id, :name %>
   </div>
   <div class="actions">
     <%= f.submit %>

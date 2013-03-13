@@ -64,8 +64,10 @@ a:hover, a:active { outline:0; }
 
 fieldset {display:block; margin:0; padding:0; border:none;}
 legend {display:block; width:100%; margin:0 0 8px; padding:3px 0; font-weight:bold; font-size:140%; border-bottom:1px solid #dadada;}
+/*
 input[type="text"],
 input[type="password"] {width:70%;}
+*/
 form ul {overflow:hidden; margin:0; list-style:none;}
 form li {overflow:hidden; clear:both; margin:10px 0;}
   li.check {margin:12px 0 10px;}

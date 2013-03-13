@@ -1,15 +1,22 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
 
 one:
-  title: MyString
+  title: first project belonging to other
   description: MyText
   website: MyString
   svn: MyString
-  team: 
+  team: teamother
 
 two:
-  title: MyString
+  title: second project belonging to go
   description: MyText
   website: MyString
   svn: MyString
-  team: 
+  team: teamgo
+
+three:
+  title: third project belonging to stop
+  description: MyText
+  website: MyString
+  svn: MyString
+  team: teamstop

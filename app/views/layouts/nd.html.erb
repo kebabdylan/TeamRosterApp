@@ -12,11 +12,28 @@
 
 <body id="cas" class=" hasGoogleVoiceExt">
   <div id="wrapper" class="cf">
+
+   
+
     <div id="header" role="banner">
       <h2><a href="http://nd.edu/">University of Notre Dame</a></h2>
       <h1>Rosterfarian</h1>
     </div>
-
+    <div id="top-menu">
+      <ul>
+        <% if session.has_key? :user_id %>
+          <li><%= link_to "Me", "/me" %></li>
+          <li><%= link_to "Logout", "/logout" %></li>
+        <% else %>
+          <li><%= link_to "Login", "/login" %></li>
+        <% end %>
+        
+        <% if session.has_key? :is_admin and session[:is_admin] %> 
+          <li><%= link_to "Admin", "/teams" %></li>
+        <% end %>
+        
+      </ul>
+    </div>
     <div id="content" role="main" class="cf">
 
 
@@ -48,9 +65,6 @@
       <a id="ndmark" href="http://nd.edu/"><img src="./assets/ndmark300.png" class="ndmark" alt="University of Notre Dame"></a>
     </div> <!-- #footer -->
   </div> <!-- #wrapper -->
-<script src="./Central Authentication Service    University of Notre Dame_files/cas.js" type="text/javascript"></script>
-
-
 
 
 </body></html>

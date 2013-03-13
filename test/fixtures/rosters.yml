@@ -2,15 +2,15 @@
 
 one:
   team: teamgo
-  member: one
+  member: ja
   role: one
 
 two:
   team: teamgo
-  member: two
+  member: la
   role: two
 
 three:
   team: teamstop
-  member: one
+  member: ja
   role: two

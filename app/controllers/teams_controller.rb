@@ -14,6 +14,14 @@ class TeamsController < ApplicationController
   # GET /teams/1.json
   def show
     @team = Team.find(params[:id])
+    if flash[:member]
+      @member = flash[:member]
+    else
+      @member = Member.new
+    end
+
+    
+    @roles = Role.all
 
     respond_to do |format|
       format.html # show.html.erb
@@ -30,6 +38,48 @@ class TeamsController < ApplicationController
       format.html # new.html.erb
       format.json { render :json => @team }
     end
+  end
+
+  def add_to_roster
+    @team = Team.find(params[:roster][:team_id])
+    @roster = Roster.new(params[:roster])
+    #render :json => @team
+
+    if @roster.save 
+         redirect_to :back, :notice => 'Member was successfully added.' 
+        #format.json { render :json => @team, :status => :created, :location => @team }
+    else
+        flash[:roster] = @roster
+        format.html { redirect_to @team, :notice => 'Member NOT successfully added.' }
+        #format.json { render :json => @errors, :status => :unprocessable_entity }
+    end
+
+  end
+
+  def add_member
+    
+    @member = Member.new(params[:member])
+    @team = Team.find(params[:team_id])
+    @member.teams << @team
+    #roster = params[:roster]
+
+    respond_to do |format|
+      if @member.save
+
+        @roster = Roster.last
+        @roster.role_id = params[:roster]["role_id"]
+        @roster.save
+
+        format.html { redirect_to @team, :notice => 'Member was successfully added.' }
+        format.json { render :json => @team, :status => :created, :location => @team }
+      else
+        flash[:member] = @member
+        format.html { redirect_to @team, :notice => 'Member NOT successfully added.' }
+        format.json { render :json => @member.errors, :status => :unprocessable_entity }
+      end
+    end
+  
+
   end
 
   # GET /teams/1/edit

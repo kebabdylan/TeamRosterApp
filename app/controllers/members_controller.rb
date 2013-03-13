@@ -1,6 +1,12 @@
-class MembersController < ApplicationController
+class MembersController < AdminController
   # GET /members
   # GET /members.json
+
+  def self
+     @member = session[:member]
+      
+  end
+
   def index
     @members = Member.all
 

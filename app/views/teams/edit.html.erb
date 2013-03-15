@@ -2,5 +2,7 @@
 
 <%= render 'form' %>
 
-<%= link_to 'Show', @team %> |
-<%= link_to 'Back', teams_path %>
+<div class="nav-actions">
+	<%= link_to 'Details', @team %> |
+	<%= link_to 'Back to list', teams_path %>
+</div>

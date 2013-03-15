@@ -1,15 +1,25 @@
 TeamRosterApp::Application.routes.draw do
   resources :notes
-
   resources :projects
-
   resources :rosters
-
   resources :members
-
   resources :teams
-
   resources :roles
+
+  #match ':controller/:action' => 'catalog#view'
+
+  match '/login' => 'me#prompt'
+  match '/logout' => 'me#logout_user'
+  post '/go' => 'me#login_user', :as=>'process_login'
+  post '/teams/add_member' => 'teams#add_member', :as=>'add_member'
+  post '/teams/add_to_roster' => 'teams#add_to_roster', :as=>'add_to_roster'
+  match '/me' => 'me#index'
+  post '/me/project/add_note' => 'me#add_note'
+  match '/me/team(/:team_id)' => 'me#team'
+  match '/me/project(/:project_id)' => 'me#project'
+  match ':controller(/:action(/:id))(.:format)'
+
+root :to => 'me#index'
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
@@ -60,7 +70,7 @@ TeamRosterApp::Application.routes.draw do
 
   # You can have the root of your site routed with "root"
   # just remember to delete public/index.html.
-  # root :to => 'welcome#index'
+   
 
   # See how all your routes lay out with "rake routes"
 

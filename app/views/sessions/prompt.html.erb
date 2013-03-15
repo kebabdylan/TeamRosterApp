@@ -1,0 +1,25 @@
+<%= form_tag process_login_path do %>
+	
+ <% if flash[:message] %>
+      <p><%= flash[:message] %>
+    <% end %>
+	
+	<h2>Please Login</h2>
+
+	<div class="field">
+		<%= label_tag "Username" %>
+		<%= text_field_tag :username %>
+	</div>
+
+	<div class="field">
+		<%= label_tag "Password" %>
+		<%= text_field_tag :password %>
+	</div>
+
+
+	<div class="actions">
+		
+		<%= submit_tag "login" %>
+	</div>
+
+<% end %>

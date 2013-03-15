@@ -1,11 +1,16 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
 
-one:
-  name: MyString
+teamgo:
+  name: Go Team
   logo: MyString
   mascot: MyString
 
-two:
-  name: MyString
+teamstop:
+  name: Stop Team
+  logo: MyString
+  mascot: MyString
+
+teamother:
+  name: Other Team
   logo: MyString
   mascot: MyString

@@ -13,7 +13,7 @@
   </tr>
 
 <% @members.each do |member| %>
-  <tr>
+  <tr <% if @members.index(member).odd? %> class="dark" <% end %> >
     <td><%= member.first_name %></td>
     <td><%= member.last_name %></td>
     <td><%= member.email %></td>

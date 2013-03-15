@@ -11,17 +11,23 @@
   </tr>
 
 <% @rosters.each do |roster| %>
+  
   <tr>
+    <% unless roster.team.nil? or roster.member.nil? or roster.role.nil? %>
     <td><%= roster.team.name %></td>
     <td><%= roster.member.full_name %></td>
     <td><%= roster.role.name %></td>
     <td><%= link_to 'Show', roster %></td>
+    <% end %>
     <td><%= link_to 'Edit', edit_roster_path(roster) %></td>
     <td><%= link_to 'Destroy', roster, :method => :delete, :data => { :confirm => 'Are you sure?' } %></td>
   </tr>
+  
 <% end %>
 </table>
 
 <br />
 
 <%= link_to 'New Roster', new_roster_path %>
+
+<%= debug @rosters %>

@@ -108,6 +108,14 @@ class TeamsController < ApplicationController
   def update
     @team = Team.find(params[:id])
 
+    uploaded_io = params[:team][:logo]
+    
+    File.open(Rails.root.join('public', 'teams/logos', uploaded_io.original_filename), 'w') do |file|
+      file.write(uploaded_io.read)
+    end
+    
+    params[:team][:logo] = uploaded_io.original_filename
+
     respond_to do |format|
       if @team.update_attributes(params[:team])
         format.html { redirect_to @team, :notice => 'Team was successfully updated.' }

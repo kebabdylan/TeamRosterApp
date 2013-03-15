@@ -4,6 +4,22 @@
   <%= @team.name %>
 </h2>
 
+<style>
+.team-logo, .team-content{float:left;}
+.team-logo{width:30%; border-right:thin solid #f2f2f2; padding:1%; margin-right:10px; text-align: center}
+.team-content{width:60%;}
+</style>
+
+<div class="team-logo">
+	<% unless @team.logo.empty? %>
+	<img src="/teams/logos/<%= @team.logo %>" align="left"/>
+<% end %>
+</div>
+
+
+<div class="team-content">
+
+
 <% unless @team.members.empty? %>
 	<h3>Members</h3>
 	<ul class="light-block">
@@ -79,7 +95,7 @@
 
 	<% end %>
 </div>
-
-
 <%= link_to 'Edit', edit_team_path(@team) %> |
 <%= link_to 'Back', teams_path %>
+</div>
+

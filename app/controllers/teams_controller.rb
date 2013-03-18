@@ -90,8 +90,17 @@ class TeamsController < ApplicationController
   # POST /teams
   # POST /teams.json
   def create
-    @team = Team.new(params[:team])
 
+
+    uploaded_io = params[:team][:logo]
+    
+
+    File.open(Rails.root.join('public', 'teams/logos', uploaded_io.original_filename), 'wb') do |file|
+      file.write(uploaded_io.read)
+    end
+    
+    params[:team][:logo] = uploaded_io.original_filename
+    @team = Team.new(params[:team])
     respond_to do |format|
       if @team.save
         format.html { redirect_to @team, :notice => 'Team was successfully created.' }
@@ -103,6 +112,18 @@ class TeamsController < ApplicationController
     end
   end
 
+
+def upload_logo(file_to_upload)
+
+    uploaded_io = file_to_upload
+    
+    File.open(Rails.root.join('public', 'teams/logos', uploaded_io.original_filename), 'w') do |file|
+      file.write(uploaded_io.read)
+    end
+    
+    return uploaded_io.original_filename
+end
+
   # PUT /teams/1
   # PUT /teams/1.json
   def update
@@ -110,7 +131,7 @@ class TeamsController < ApplicationController
 
     uploaded_io = params[:team][:logo]
     
-    File.open(Rails.root.join('public', 'teams/logos', uploaded_io.original_filename), 'w') do |file|
+    File.open(Rails.root.join('public', 'teams/logos', uploaded_io.original_filename), 'wb') do |file|
       file.write(uploaded_io.read)
     end
     

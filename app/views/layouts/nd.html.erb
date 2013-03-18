@@ -30,6 +30,8 @@
         
         <% if session.has_key? :is_admin and session[:is_admin] %> 
           <li><%= link_to "Admin", "/teams" %></li>
+          <li><%= link_to "Members", "/members" %></li>
+          <li><%= link_to "Projects", "/projects" %></li>
         <% end %>
         
       </ul>

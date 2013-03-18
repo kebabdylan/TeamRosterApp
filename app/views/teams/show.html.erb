@@ -11,7 +11,7 @@
 </style>
 
 <div class="team-logo">
-	<% unless @team.logo.empty? %>
+	<% unless @team.logo.nil? or @team.logo.empty? %>
 	<img src="/teams/logos/<%= @team.logo %>" align="left"/>
 <% end %>
 </div>

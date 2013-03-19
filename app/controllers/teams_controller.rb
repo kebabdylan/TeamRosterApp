@@ -1,4 +1,4 @@
-class TeamsController < ApplicationController
+class TeamsController < AdminController
   # GET /teams
   # GET /teams.json
   def index

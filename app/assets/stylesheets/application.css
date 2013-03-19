@@ -11,3 +11,11 @@
  *= require_self
  *= require_tree .
  */
+
+
+
+
+
+.app{margin-top: 65px}
+#navbar{background-image:none; background-color: #000}
+.navbar .brand, .navbar .nav>li>a{color:#f2f2f2;}

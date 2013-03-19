@@ -1,101 +1,140 @@
-<p id="notice"><%= notice %></p>
-
-<h2>
-  <%= @team.name %>
-</h2>
-
 <style>
 .team-logo, .team-content{float:left;}
 .team-logo{width:30%; border-right:thin solid #f2f2f2; padding:1%; margin-right:10px; text-align: center}
 .team-content{width:60%;}
 </style>
 
-<div class="team-logo">
-	<% unless @team.logo.nil? or @team.logo.empty? %>
-	<img src="/teams/logos/<%= @team.logo %>" align="left"/>
+
+<p id="notice"><%= notice %></p>
+
+<h2><%= @team.name %></h2>
+
+
+<div class="row full-right">
+  <div class="pull-right">
+  <%= link_to 'Edit', edit_team_path(@team), :class=>"btn" %> 
+  <%= link_to 'Back', teams_path, :class=>"btn" %>
+</div>
+</div>
+
+<div class="row">
+
+  <div class="span3">
+  <% unless @team.logo.nil? or @team.logo.empty? %>
+  <img src="/teams/logos/<%= @team.logo %>" align="left"/>
 <% end %>
+  </div>
+
+  <div class="span8">
+    
+<div class="span8">
+    <h2>Team</h2>
+
+     <p>Name: <%= @team.name %></p>
+     <p>Mascot: <%= @team.mascot %></p> 
 </div>
 
 
-<div class="team-content">
+<div class="row">
+
+    <div class="span4 well">
+
+      <% unless @team.members.empty? %>
+        <h3>Members</h3>
+        <ul class="light-block">
+          <% @team.members.each do |member| %>
+          <li><%= member.full_name %></li>
+          <% end %>
+        </ul>
+      <% end %>
+
+    </div>
+
+   <div class="span3 well">
+
+      <% unless @team.projects.empty? %>
+        <h3>Projects</h3>
+        <ul class="light-block">
+          <% @team.projects.each do | project| %>
+          <li><%= project.title %></li>
+          <% end %>
+        </ul>
+      <% end %>
+
+    </div>
+
+</div>
+
+<div class="row">
+    <div class="well span8">
+      
+      <%= form_for @roster, :as=> :roster, :url=> add_to_roster_path do |f| %>
+          
+          <div class="field">
+            <%= label_tag "member" %>
+            <%= collection_select  :roster, :member_id, Member.all, :id, :full_name %>
+          </div>
+
+          <div class="field">
+            <%= label_tag "role" %>
+            <%= collection_select  :roster, :role_id, @roles, :id, :name %>
+          </div>
+
+           <%= hidden_field :roster, :team_id, :value=>@team.id %>
+
+          <div class="actions">
+            <%= f.submit %>
+          </div>
+      <% end %>
 
 
-<% unless @team.members.empty? %>
-	<h3>Members</h3>
-	<ul class="light-block">
-		<% @team.members.each do |member| %>
-		<li><%= member.full_name %></li>
-		<% end %>
-	</ul>
-<% end %>
 
-<div id="add-member-form">
+    </div>
 
+    <div class="well span8">
+      <h3>Add a new team member</h3>
+        <%= form_for @member, :as => :member, :url => add_member_path, :method => :post  do |f| %>
 
+            <div class="field">
+              <%= f.label :first_name %><br />
+              <%= f.text_field :first_name %>
+            </div>
+            <div class="field">
+              <%= f.label :last_name %><br />
+              <%= f.text_field :last_name %>
+            </div>
+            <div class="field">
+              <%= f.label :email %><br />
+              <%= f.text_field :email %>
+            </div>
+            <div class="field">
+              <%= f.label :username %><br />
+              <%= f.text_field :username %>
+            </div>
+            <div class="field">
+              <%= f.label :password %><br />
+              <%= f.text_field :password %>
+            </div>
 
-	<%= form_for @roster, :as=> :roster, :url=> add_to_roster_path do |f| %>
-		  
-		  <div class="field">
-		  	<%= label_tag "member" %>
-		  	<%= collection_select  :roster, :member_id, Member.all, :id, :full_name %>
-		  </div>
+            <div class="field">
+              <%= label_tag "role" %>
+              <%= collection_select  :roster, :role_id, @roles, :id, :name %>
+            </div>  
 
-		  <div class="field">
-		  	<%= label_tag "role" %>
-		  	<%= collection_select  :roster, :role_id, @roles, :id, :name %>
-		  </div>
+            <%= hidden_field_tag :team_id, @team.id %>
 
-		   <%= hidden_field :roster, :team_id, :value=>@team.id %>
+            <div class="actions">
+              <%= f.submit %>
+            </div>
 
-		  <div class="actions">
-		    <%= f.submit %>
-		  </div>
-	<% end %>
+        <% end %>
+    </div>
+
+</div>
+  </div>
+</div>
+
 
 
 
 </div>
-
-
-<div id="new-member-form">
-	<h3>Add a new team member</h3>
-	<%= form_for @member, :as => :member, :url => add_member_path, :method => :post  do |f| %>
-
-		  <div class="field">
-		    <%= f.label :first_name %><br />
-		    <%= f.text_field :first_name %>
-		  </div>
-		  <div class="field">
-		    <%= f.label :last_name %><br />
-		    <%= f.text_field :last_name %>
-		  </div>
-		  <div class="field">
-		    <%= f.label :email %><br />
-		    <%= f.text_field :email %>
-		  </div>
-		  <div class="field">
-		    <%= f.label :username %><br />
-		    <%= f.text_field :username %>
-		  </div>
-		  <div class="field">
-		    <%= f.label :password %><br />
-		    <%= f.text_field :password %>
-		  </div>
-
-		  <div class="field">
-		  	<%= label_tag "role" %>
-		  	<%= collection_select  :roster, :role_id, @roles, :id, :name %>
-		  </div>	
-
-		  <%= hidden_field_tag :team_id, @team.id %>
-
-		  <div class="actions">
-		    <%= f.submit %>
-		  </div>
-
-	<% end %>
-</div>
-<%= link_to 'Edit', edit_team_path(@team) %> |
-<%= link_to 'Back', teams_path %>
-</div>
-

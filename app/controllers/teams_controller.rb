@@ -1,11 +1,15 @@
 class TeamsController < AdminController
   # GET /teams
   # GET /teams.json
+  before_filter :restrict_to_admin, :only => [:new, :create, :edit, :update, :destroy]
+
+
+
   def index
     @teams = Team.all
 
     respond_to do |format|
-      format.html # index.html.erb
+      format.html { render "list" }
       format.json { render :json => @teams }
     end
   end

@@ -1,8 +1,5 @@
-<h1>Editing team</h1>
-
-<%= render 'form' %>
-
-<div class="nav-actions">
-	<%= link_to 'Details', @team %> |
-	<%= link_to 'Back to list', teams_path %>
+<%- model_class = Team -%>
+<div class="page-header">
+  <h1><%=t '.title', :default => [:'helpers.titles.edit', 'Edit %{model}'], :model => model_class.model_name.human %></h1>
 </div>
+<%= render :partial => 'form' %>

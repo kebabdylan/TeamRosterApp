@@ -1,20 +1,25 @@
-<p id="notice"><%= notice %></p>
+<%- model_class = Roster -%>
+<div class="page-header">
+  <h1><%=t '.title', :default => model_class.model_name.human %></h1>
+</div>
 
-<p>
-  <b>Team:</b>
-  <%= @roster.team.name %>
-</p>
+<dl class="dl-horizontal">
+  <dt><strong><%= model_class.human_attribute_name(:team_id) %>:</strong></dt>
+  <dd><%= @roster.team_id %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:member_id) %>:</strong></dt>
+  <dd><%= @roster.member_id %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:role_id) %>:</strong></dt>
+  <dd><%= @roster.role_id %></dd>
+</dl>
 
-<p>
-  <b>Member:</b>
-  <%= @roster.member.full_name %>
-</p>
-
-<p>
-  <b>Role:</b>
-  <%= @roster.role.name %>
-</p>
-
-
-<%= link_to 'Edit', edit_roster_path(@roster) %> |
-<%= link_to 'Back', rosters_path %>
+<div class="form-actions">
+  <%= link_to t('.back', :default => t("helpers.links.back")),
+              rosters_path, :class => 'btn'  %>
+  <%= link_to t('.edit', :default => t("helpers.links.edit")),
+              edit_roster_path(@roster), :class => 'btn' %>
+  <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
+              roster_path(@roster),
+              :method => 'delete',
+              :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
+              :class => 'btn btn-danger' %>
+</div>

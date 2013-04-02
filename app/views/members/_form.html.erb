@@ -1,50 +1,43 @@
-<%= form_for @member, :html => { :class => 'form-horizontal' } do |f| %>
-  <div class="control-group">
-    <%= f.label :first_name, :class => 'control-label' %>
-    <div class="controls">
-      <%= f.text_field :first_name, :class => 'text_field' %>
+<%= form_for(@member) do |f| %>
+  <% if @member.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@member.errors.count, "error") %> prohibited this member from being saved:</h2>
+
+      <ul>
+      <% @member.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
     </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :first_name %>
+    <%= f.text_field :first_name %>
   </div>
-  <div class="control-group">
-    <%= f.label :last_name, :class => 'control-label' %>
-    <div class="controls">
-      <%= f.text_field :last_name, :class => 'text_field' %>
-    </div>
+  <div class="field">
+    <%= f.label :last_name %>
+    <%= f.text_field :last_name %>
   </div>
-  <div class="control-group">
-    <%= f.label :email, :class => 'control-label' %>
-    <div class="controls">
-      <%= f.text_field :email, :class => 'text_field' %>
-    </div>
+  <div class="field">
+    <%= f.label :email %>
+    <%= f.text_field :email %>
   </div>
-  <div class="control-group">
-    <%= f.label :username, :class => 'control-label' %>
-    <div class="controls">
-      <%= f.text_field :username, :class => 'text_field' %>
-    </div>
+  <div class="field">
+    <%= f.label :username %>
+    <%= f.text_field :username %>
   </div>
-  <div class="control-group">
-    <%= f.label :password, :class => 'control-label' %>
-    <div class="controls">
-      <%= f.text_field :password, :class => 'text_field' %>
-    </div>
-  </div>
-  <div class="control-group">
-    <%= f.label :is_admin, :class => 'control-label' %>
-    <div class="controls">
-      <%= f.check_box :is_admin, :class => 'check_box' %>
-    </div>
-  </div>
-  <div class="control-group">
-    <%= f.label :profile, :class => 'control-label' %>
-    <div class="controls">
-      <%= f.text_field :profile, :class => 'text_field' %>
-    </div>
+  <div class="field">
+    <%= f.label :password %>
+    <%= f.text_field :password %>
   </div>
 
-  <div class="form-actions">
-    <%= f.submit nil, :class => 'btn btn-primary' %>
-    <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
-                members_path, :class => 'btn' %>
+  <div class="field">
+    <%= f.label :is_admin %>
+    <%= f.check_box :is_admin %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit %>
   </div>
 <% end %>

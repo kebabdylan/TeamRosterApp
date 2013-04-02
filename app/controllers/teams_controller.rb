@@ -5,6 +5,15 @@ class TeamsController < AdminController
 
 
 
+  def full
+    @teams = Team.all
+
+    respond_to do |format|
+      format.html { render "full" }
+      format.json { render :json => @teams }
+    end
+  end
+
   def index
     @teams = Team.all
 
@@ -18,6 +27,7 @@ class TeamsController < AdminController
   # GET /teams/1.json
   def show
     @team = Team.find(params[:id])
+    
     if flash[:member]
       @member = flash[:member]
     else

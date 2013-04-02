@@ -1,0 +1,23 @@
+<style>
+	div.team{float:left;width:96%; padding:2%; margin-bottom:50px; border-radius:8px; border:thin solid #f2f2f2;}
+	div.members{float:left;margin-left:20px; width:42%; }
+	div.projects{float:left;margin-left:20px; width:42%;}
+</style>
+
+
+<% @teams.each do | team | %>
+<div class="team">
+	<h2><%= team.name %></h2>
+<div class="members">
+	<h3>Members</h3>
+		
+			<%= render team.members %>
+		</div>
+<div class="projects">
+	<h3>Projects</h3>
+		
+			<%= render team.projects %>	
+		</div>
+
+</div>
+<% end %>

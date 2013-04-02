@@ -7,12 +7,13 @@ TeamRosterApp::Application.routes.draw do
   resources :roles
 
   #match ':controller/:action' => 'catalog#view'
-
+  match '/teamlist' => 'teams#full'
   match '/login' => 'me#prompt'
   match '/logout' => 'me#logout_user'
   post '/go' => 'me#login_user', :as=>'process_login'
   post '/teams/add_member' => 'teams#add_member', :as=>'add_member'
   post '/teams/add_to_roster' => 'teams#add_to_roster', :as=>'add_to_roster'
+  
   match '/me' => 'me#index'
   post '/me/project/add_note' => 'me#add_note'
   match '/me/team(/:team_id)' => 'me#team'

@@ -94,12 +94,17 @@ class TeamsController < AdminController
 
     uploaded_io = params[:team][:logo]
     
+    unless params[:team][:logo].blank?
+  
+      File.open(Rails.root.join('public', 'teams/logos', uploaded_io.original_filename), 'wb') do |file|
+        file.write(uploaded_io.read)
+     end
 
-    File.open(Rails.root.join('public', 'teams/logos', uploaded_io.original_filename), 'wb') do |file|
-      file.write(uploaded_io.read)
+      params[:team][:logo] = uploaded_io.original_filename
+
     end
+
     
-    params[:team][:logo] = uploaded_io.original_filename
     @team = Team.new(params[:team])
     respond_to do |format|
       if @team.save
@@ -130,13 +135,14 @@ end
     @team = Team.find(params[:id])
 
     uploaded_io = params[:team][:logo]
+    unless params[:team][:logo].blank?
+      File.open(Rails.root.join('public', 'teams/logos', uploaded_io.original_filename), 'wb') do |file|
+        file.write(uploaded_io.read)
+      end
+      
+      params[:team][:logo] = uploaded_io.original_filename
+    end 
     
-    File.open(Rails.root.join('public', 'teams/logos', uploaded_io.original_filename), 'wb') do |file|
-      file.write(uploaded_io.read)
-    end
-    
-    params[:team][:logo] = uploaded_io.original_filename
-
     respond_to do |format|
       if @team.update_attributes(params[:team])
         format.html { redirect_to @team, :notice => 'Team was successfully updated.' }

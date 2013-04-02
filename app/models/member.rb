@@ -1,7 +1,7 @@
 class Member < ActiveRecord::Base
   attr_accessible :email, :first_name, :last_name, :password, :username, :is_admin
-  validates :email, :first_name, :last_name, :password, :username, :presence=>true
-  
+  validates :first_name, :last_name, :password, :username, :presence=>true
+
   has_many :rosters
   has_many :teams, :through=>:rosters
 
@@ -11,5 +11,13 @@ class Member < ActiveRecord::Base
 
   def projects 	
   	teams.map(&:projects).flatten
+  end
+
+  def has_team
+    if teams.length > 0
+      true
+    else
+      false
+    end
   end
 end

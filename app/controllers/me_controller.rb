@@ -1,6 +1,7 @@
 class MeController < ApplicationController
   # GET /members
   # GET /members.json
+  
   before_filter :require_login, :except=>[:login_user,:prompt,:logout_user]
   before_filter :get_member, :except=>[:login_user,:prompt,:logout_user]
 

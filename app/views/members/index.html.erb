@@ -28,8 +28,9 @@
   </tr>
   <% index += 1 %>
 <% end %>
+
 </table>
 
-<br />
-
-<%= link_to 'New Member', new_member_path %>
+<%= link_to t('.new', :default => t("helpers.links.new")),
+            new_member_path,
+            :class => 'btn btn-primary' %>

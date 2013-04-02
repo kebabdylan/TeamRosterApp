@@ -1,26 +1,38 @@
-<%= form_tag process_login_path do %>
+<h2>Please Login</h2>
+
+<%= form_tag process_login_path, :class=>"form-horizontal" do %>
 	
- <% if flash[:message] %>
-      <p><%= flash[:message] %>
+	<% if flash[:message] %>
+    
+    <div class="alert">
+  		<button type="button" class="close" data-dismiss="alert">&times;</button>
+  		<p><%= flash[:message] %></p>
+	</div>
+
+
+      
     <% end %>
 
 	
-	<h2>Please Login</h2>
 
-	<div class="field">
-		<%= label_tag "Username" %>
-		<%= text_field_tag :username %>
+
+	<div class="control-group">
+		<%= label_tag "Username",  nil, :class=>"control-label" %>
+		<div class="controls">
+			<%= text_field_tag :username %>
+		</div>
 	</div>
 
-	<div class="field">
-		<%= label_tag "Password" %>
-		<%= password_field_tag :password %>
+	<div class="control-group">
+		<%= label_tag "Password", nil, :class=>"control-label" %>
+		<div class="controls">
+			<%= password_field_tag :password %>
+		</div>
 	</div>
 
 
-	<div class="actions">
-		
-		<%= submit_tag "login" %>
+	<div class="controls">	
+		<%= submit_tag "login", :class=>"btn btn-success" %>
 	</div>
 
 <% end %>

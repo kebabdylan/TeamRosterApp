@@ -1,4 +1,29 @@
+<script language="Javascript">
+    $(document).ready(function(){
+        $('button#show-no-team').click(function(){
+            $('tr.team').hide();
+            $('tr.no-team').show();
+            })
+
+        $('button#show-team').click(function(){
+            $('tr.team').show();
+            $('tr.no-team').hide();
+            })
+
+        $('button#show-all').click(function(){
+            $('tr.team').show();
+            $('tr.no-team').show();
+            })
+    })
+</script>
 <h1>Listing members</h1>
+
+
+<div class="filter-actions">
+    <button id="show-no-team" type="button"> Show Members with no team</button>
+    <button id="show-team" type="button">Show Members with a team</button>
+    <button id="show-all" type="button">Show All</button>
+</div>
 
 <% index = 1 %>
 <table>
@@ -15,7 +40,9 @@
   </tr>
 
 <% @members.each do |member| %>
-  <tr <% if @members.index(member).odd? %> class="dark" <% end %> >
+  <tr class="<% if @members.index(member).odd? %> dark <% end %> 
+        <% if member.has_team%> team <% else %> no-team <% end %>
+    " >
     <td><%= index %>
     <td><%= member.first_name %></td>
     <td><%= member.last_name %></td>

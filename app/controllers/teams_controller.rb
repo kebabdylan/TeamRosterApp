@@ -9,7 +9,7 @@ class TeamsController < AdminController
     @teams = Team.all
 
     respond_to do |format|
-      format.html { render "list" }
+      format.html { render "index" }
       format.json { render :json => @teams }
     end
   end

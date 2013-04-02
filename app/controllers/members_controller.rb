@@ -8,7 +8,7 @@ class MembersController < AdminController
   end
 
   def index
-    @members = Member.all
+    @members = Member.order("last_name")
 
     respond_to do |format|
       format.html # index.html.erb

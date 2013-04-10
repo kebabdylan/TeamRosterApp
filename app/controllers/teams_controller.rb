@@ -3,7 +3,13 @@ class TeamsController < AdminController
   # GET /teams.json
   before_filter :restrict_to_admin, :only => [:new, :create, :edit, :update, :destroy]
 
-
+  def broadcast
+    
+    @team = Team.first
+    @message = "foobar"
+     TeamMailer.broadcast(@team,@message).deliver
+    
+  end
 
   def full
     @teams = Team.all

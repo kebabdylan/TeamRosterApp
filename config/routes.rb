@@ -7,6 +7,7 @@ TeamRosterApp::Application.routes.draw do
   resources :roles
 
   #match ':controller/:action' => 'catalog#view'
+  match 'teams/:id/broadcast' => 'teams#broadcast'
   match '/teamlist' => 'teams#full'
   match '/login' => 'me#prompt'
   match '/logout' => 'me#logout_user'

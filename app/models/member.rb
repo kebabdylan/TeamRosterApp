@@ -1,6 +1,8 @@
 class Member < ActiveRecord::Base
   attr_accessible :email, :first_name, :last_name, :password, :username, :is_admin, :profile
   validates :first_name, :last_name, :password, :username, :presence=>true
+  
+  has_many :notes
 
   has_many :rosters
   has_many :teams, :through=>:rosters

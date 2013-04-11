@@ -7,33 +7,26 @@
         Add a New Project
     </a>
 </div>
-
-<table class="table table table-striped">
-  <tr>
-    <th>Title</th>
-    <th>Description</th>
-    <th>Website</th>
-    <th>Svn</th>
-    <th>Team</th>
-    <th></th>
-    <th></th>
-    <th></th>
-  </tr>
-
+<div class="project-list list">
 <% @projects.each do |project| %>
-  <tr>
-    <td><%= project.title %></td>
-    <td><%= project.description %></td>
-    <td><%= project.website %></td>
-    <td><%= project.svn %></td>
-    <td><%= project.team.name %></td>
-    <td><%= link_to 'Show', project, :class=>"btn" %></td>
-    <td><%= link_to 'Edit', edit_project_path(project), :class=>"btn" %></td>
-    <td><%= link_to 'Delete', project, :method => :delete, :data => { :confirm => 'Are you sure?' }, :class=>"btn btn-danger" %></td>
-  </tr>
+<div class="project list-item">
+    <h3><%= project.title %></h3>
+    <p><%= project.description %></p>
+    <p>
+        <%= project.website %><br />
+        <%= project.svn %>
+    </p>    
+        <p>Team: <%= project.team.name %></p>
+    
+       <div class="actions" >
+    <%= link_to 'Show', project, :class=>"btn" %>
+    <%= link_to 'Edit', edit_project_path(project), :class=>"btn" %>
+    <%= link_to 'Delete', project, :method => :delete, :data => { :confirm => 'Are you sure?' }, :class=>"btn btn-danger" %>
+</div>
+</div>
 <% end %>
-</table>
+</div>
 
-<br />
+
 
 

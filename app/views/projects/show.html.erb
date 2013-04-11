@@ -1,12 +1,11 @@
 <p id="notice"><%= notice %></p>
-
-<p>
-  <b>Title:</b>
+  <h2>
   <%= @project.title %>
-</p>
+</h2>
+
+<p><b>Team:</b> <%= @project.team.name %></p>
 
 <p>
-  <b>Description:</b>
   <%= @project.description %>
 </p>
 
@@ -20,11 +19,14 @@
   <%= @project.svn %>
 </p>
 
-<p>
-  <b>Team:</b>
-  <%= @project.team %>
-</p>
-
+<% unless @project.notes.empty? %>
+  <div class="note-list list">
+    <%= render @project.notes %>
+  </div>
+<% end %>
+<div class="note-form">
+<%= render "/notes/form", :note => @project.notes.build %>
+</div>
 
 <%= link_to 'Edit', edit_project_path(@project) %> |
 <%= link_to 'Back', projects_path %>
